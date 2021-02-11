@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8" />
+	<style>
+
+	</style>
+	<title>IT 2320 - Lab 2</title>
+	<pre>
+   <script>
+	"use strict";
+
+	// set up an array and initialize the first two values
+	var fibStr = "";
+	var fibArray = [];
+	fibArray[0] = 0;
+	fibArray[1] = 1;
+
+	// declare a variable for the size of the squence 
+	var fibNum = 0;
+
+	// prompt - check - alert - rinse and repeat
+	// prompt user for how many 
+	fibNum = prompt("Enter a number (3 or greater): ", 0);
+	fibNum = parseInt(fibNum);
+	while (isNaN(fibNum) || fibNum < 3) {
+		// check for NaN
+		if (isNaN(fibNum)) {
+			fibNum = prompt("Is not a number. Enter a number (3 or greater): ", fibNum);
+		}
+		// check that fibNum >= 3
+		else if (fibNum < 3) {
+			fibNum = prompt("Must be a number 3 or greater.", fibNum);
+		}
+		fibNum = parseInt(fibNum);
+	}
+
+	// write the values into the array
+	// You start at 2 because the first two values are already there
+	for (var i = 2; i < fibNum; i++) {
+		fibArray[i] = fibArray[i - 1] + fibArray[i - 2];
+	}
+
+	// read from the array and print values to screen
+	// another for loop 
+	fibStr = "Number: " + fibNum + "\nFibonacci Sequence: ";
+	for (var i = 0; i < fibNum; i++) {
+		var fibStr = fibStr + fibArray[i] + ", ";
+	}
+
+	// calculate golden ratio and display it
+	//  last number / 2nd last number
+	var goldenRatio = fibArray[fibNum - 1] / fibArray[fibNum - 2];
+	fibStr = fibStr + "\nGolden Ratio: " + goldenRatio;
+	alert(fibStr);
+</script>
+   </pre>
+</head>
+
+<body>
+	<h2>Tim Long - IT 2320 - Lab 2</h2>
+</body>5
+
+</html>
