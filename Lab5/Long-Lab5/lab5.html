@@ -1,0 +1,45 @@
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Presidents Slide Show</title>
+	<link rel="stylesheet" href="lab5.css">
+</head>
+
+<body>
+	<main>
+		<h1>Presidents Slide Show</h1>
+		<h2>Tim Long - IT 2320 - Lab 5</h2>
+
+		<p>
+			<center>
+				Timer (seconds): <input type="text" id="timerVal" value="5">
+			</center>
+		</p>
+
+		<ul id="image_list">
+			<li><a href="images/adams.jpg" title="Adams"></a></li>
+			<li><a href="images/jackson.jpg" title="Jackson"></a></li>
+			<li><a href="images/jefferson.jpg" title="Jefferson"></a></li>
+			<li><a href="images/madison.jpg" title="Madison"></a></li>
+			<li><a href="images/Washington.jpg" title="Washington"></a></li>
+		</ul>
+
+		<p>
+			<input type="button" id="start" value="Start">
+			<input type="button" id="pause" value="Pause" disabled="true">
+		</p>
+
+		<p><img id="main_image" src="" alt=""></p>
+		<p>
+			<center>
+				<h2 id="caption"></h2>&nbsp;(&nbsp;<scan id="countdown" class="blacktext"></scan>&nbsp;)
+			</center>
+		</p>
+		<script src="lab5.js"></script>
+
+	</main>
+</body>
+
+</html>
