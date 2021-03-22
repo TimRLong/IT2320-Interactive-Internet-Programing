@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab9 Walking Man</title>
+    <style>
+        #startButton {
+            height: 60px;
+            width: 100px;
+            font-size: 30px;
+            color: blueviolet;
+        }
+
+        #walkingMan {
+            position: absolute;
+            left: -100px;
+            width: 400px;
+            display: none;
+            transform: scaleX(1);
+        }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script>
+    $(document).ready(function() {
+        $("#startButton").click(function () {
+            //startAnimation;
+            let winWidth = $(window).width() - 300;
+            $("#walkingMan")
+                .css({ 'transform': 'scaleX(1)' })
+                .fadeIn(1000)
+                .animate({ left: winWidth }, 3000);
+            window.setTimeout(walkBack, 4000 );
+        });
+    });
+    
+    function walkBack() {
+        $("#walkingMan")
+            .css({ 'transform': 'scaleX(-1)' })
+            .animate({ left: -100 }, 3000)
+            .fadeOut(1000);
+    }
+    </script>
+</head>
+
+<body>
+    <button id="startButton">Start</button>
+    <div>
+        <img id="walkingMan" src="images/lab9-guy-walking.gif" alt="Walking man">
+    </div>
+</body>
+
+</html>
