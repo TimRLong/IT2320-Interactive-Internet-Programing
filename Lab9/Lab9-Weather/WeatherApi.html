@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Lab-9 Tim Long</title>
+    <style>
+        h1 {
+            color: rgb(25, 175, 145);
+        }
+
+        #displayData {
+            display: none;
+        }
+
+        #displayData label {
+            position: relative;
+            float: left;
+            width: 200px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Check your weather</h1>
+    <label for="zipInput">Enter your zip code:</label>
+    <input type="text" id="zipInput" name="zipInput">
+    <button id="entZip">submit</button>
+    <br>
+
+    <div id="displayData" visible=false>
+        <label for="CityName">Name of the City:</label><span id="CityName"></span><br />
+        <label for="CurrentCondition">Current Condition:</label><span id="CurrentCondition"></span><br />
+        <label for="Temperature">Temperature:</label><span id="Temperature"></span><br />
+        <label for="WindSpeed_Direction">Wind Speed and Direction:</label><span id="Wind"></span><br />
+        <label for="Humidity">Humidity:</label><span id="Humidity"></span><br />
+        <label for="TempMinMax">Temp Min and Max:</label><span id="TempMinMax"></span>
+    </div>
+
+    <script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script>
+        $("#entZip").click(function () {
+            var zipCode = $("#zipInput").val();
+            var testData = "";
+            var data;
+            var url = "http://api.openweathermap.org/data/2.5/weather?zip=" + zipCode
+                + ",us&appid=162b505906a4b29cb621cbf22edb8995&units=imperial";
+
+            $.ajax({
+                method: "GET",
+                url: url,
+                dataType: "json"
+            }).done(function (data) {
+                $("#CityName").text(data.name);
+                $("#CurrentCondition").text(data.weather[0].description);
+                $("#Temperature").html(data.main.temp.toFixed(0) + "&deg;F");
+                let compassSector = ["North", "NorthNorthEast", "NorthEast", "EastNorthEast",
+                    "East", "EastSouthEast", "SouthEast", "SouthSouthEast", "South",
+                    "SouthSouthWest", "SouthWest", "WestSouthWest", "West", "WestNorthWest",
+                    "NorthWest", "NorthNorthWest", "North"];
+                let windDirection = compassSector[(data.wind.deg / 22.5).toFixed(0)];
+                $("#Wind").text(data.wind.speed + "mph  " + windDirection);
+                $("#Humidity").text(data.main.humidity + "%");
+                $("#TempMinMax").html("Min: " + data.main.temp_min.toFixed(0) + "&deg;F Max: "
+                    + data.main.temp_max.toFixed(0) + "&deg;F");
+
+                $("#displayData").show();
+            }).fail(function (jqXHR, textStatus) {
+                $("#displayData").hide();
+                alert(textStatus);
+            }).always(function () {
+                $("#zipInput").focus();
+            });
+        });
+    </script>
+</body>
+
+</html>
