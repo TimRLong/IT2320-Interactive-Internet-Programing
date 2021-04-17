@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tim Long - Lab 11 - 2320</title>
+</head>
+
+<body>
+    <h2>Long - Lab 11</h2>
+    Enter a string: <input type="text" id="dataEntered">
+    <button type="button" id="btnSubmit">Submit</button>
+    <br /><br />
+    Search for this: <input type="text" id="search">
+    <button type="button" id="btnSearch">Search</button>
+    <br /><br />
+    <button type="button" id="sort">Sort the Array</button>
+    <button type="button" id="reverse">Reverse the Array</button>
+    <button type="button" id="display">Display the Array</button>
+    <br /><br /> <strong>My Array Output</strong><br />
+    <span id="results"> *** </span>
+
+    <script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
+
+    <script>
+        var wordsArray = [];
+        $(document).ready(function () {
+            $('#btnSubmit').on("click", function () {
+                if ($("#dataEntered").val().length > 0) {
+                    addDataEntered($("#dataEntered").val());
+                }
+            });
+            $('#dataEntered').keyup(function (event) {
+                if (event.keyCode === 13 && $("#dataEntered").val().length > 0) {
+                    addDataEntered($("#dataEntered").val());
+                }
+            });
+            $('#btnSearch').on("click", function () {
+                if ($("#search").val().length > 0) {
+                    searchArray($("#search").val());
+                }
+            });
+            $('#search').keyup(function (event) {
+                if (event.keyCode === 13 && $("#search").val().length > 0) {
+                    searchArray($("#search").val());
+                }
+            });
+            $('#sort').on("click", function () {
+                printArray(wordsArray.sort());
+            });
+            $('#reverse').on("click", function () {
+                printArray(wordsArray.reverse());
+            });
+            $('#display').on("click", function () {
+                printArray(wordsArray);
+            });
+            function addDataEntered(newData) {
+                wordsArray.push(newData);
+                printArray(wordsArray);
+                $("#dataEntered").val("");
+            };
+            function searchArray(newSrchStr) {
+               var foundStr = wordsArray.findIndex(element => element.indexOf(newSrchStr) >= 0);
+                if (foundStr != -1) {
+                    $("#results").text("[ " + foundStr + " ]  " + wordsArray[foundStr]);
+                } else {
+                    alert("Search string " + newSrchStr + " not found.");
+                }
+            }
+            function printArray(prntArray) {
+                if (prntArray.length == 0) {
+                    alert("Cannot print an empty array.");
+                } else {
+                    var resultsHTML = "";
+                    for (i = 0; i < prntArray.length; i++) {
+                        resultsHTML = resultsHTML + "[ " + i + " ]   " + prntArray[i] + "<br >";
+                    }
+                    $("#results").html(resultsHTML);
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>
