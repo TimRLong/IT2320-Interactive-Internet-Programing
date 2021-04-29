@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tim Long - Lab 12 - 2320</title>
+    <style type="text/css" media="screen">
+        body {
+            font-size: 20px;
+        }
+
+        label {
+            display: inline-block;
+            width: 200px;
+        }
+
+        input {
+            width: 100px;
+            margin-right: 15px;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Long - Lab 12</h2>
+    <label>Enter first number:</label> <input type="text" id="number1">
+
+    <button type="button" id="btnPrime">Get Prime Numbers</button>
+    <br /><br />
+    <label>Enter second number:</label> <input type="text" id="number2">
+
+    <button type="button" id="btnGCD">Get GCD</button>
+    <br /><br />
+    <span id="results"> *** </span>
+
+    <script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('#btnPrime').on("click", function () {
+                if ($("#number1").val().length > 0) {
+                    getPrime($("#number1").val());
+                }
+            });
+            $('#btnGCD').on("click", function () {
+                if ($("#number1").val().length > 0 && $("#number2").val().length > 0) {
+                    getGCD($("#number1").val(), $("#number2").val());
+                }
+            });
+            function getPrime(num1) {
+                if (num1 <= 1) return 0;
+                var numCount = 2;
+                var primResult = "1. 1<br \>2. 2<br \>";
+                for (var i = 3; i <= num1; i = i + 2) {
+                    var isPrime = true;
+                    for (var j = 3; j <= Math.ceil(Math.sqrt(i)); j++) {
+                        if (i % j === 0) {
+                            isPrime = false;
+                            break;
+                        }
+                    }
+                    if (isPrime == true) {
+                        numCount++;
+                        primResult = primResult + numCount + ". " + i + "<br \>";
+                    }
+                }
+                $("#results").html(primResult);
+            }
+            function getGCD(num1, num2) {
+                var R;
+                while ((num1 % num2) > 0) {
+                    R = num1 % num2;
+                    num1 = num2;
+                    num2 = R;
+                }
+                $("#results").text("GCD = " + num2);
+            }
+        });
+    </script>
+</body>
+
+</html>
