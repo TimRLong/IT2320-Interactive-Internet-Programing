@@ -1,0 +1,107 @@
+<html>
+
+<head>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script>
+    var scale = ["C", "D", "E", "F", "G", "A5", "B5", "C5", "C5", "B5", "A5", "G", "F", "E", "D", "C"];
+    
+    playSong = async() => {     
+      for(const note of scale) {
+        await new Promise(resolve => setTimeout(resolve, 1500))
+          .then(document.getElementById(note).play())
+          .then($("#notes").text($("#notes").text() + " " + note));
+      }
+    }
+    </script>
+</head>
+
+<body>
+  <h2>Lab 13 - Async & Await</h2>
+  <button type="button" onclick="playSong()">Play</button>
+  <p>
+  <h1><span id="notes"></span></h1>
+  </p>
+
+  <!-- from freesounds.org - user: pinkyfinger -->
+  <audio id="A">
+    <source src="sounds/68437__pinkyfinger__piano-a.wav" type="audio/wav">
+    Your browser does not support the audio element.
+  </audio>
+
+  <audio id="B">
+    <source src="sounds/68438__pinkyfinger__piano-b.wav" type="audio/wav">
+    Your browser does not support the audio element.
+  </audio>
+
+  <audio id="Bb">
+    <source src="sounds/68439__pinkyfinger__piano-bb.wav" type="audio/wav">
+    Your browser does not support the audio element.
+  </audio>
+
+  <audio id="C">
+    <source src="sounds/68441__pinkyfinger__piano-c.wav" type="audio/wav">
+    Your browser does not support the audio element.
+  </audio>
+
+  <audio id="Csharp">
+    <source src="sounds/68440__pinkyfinger__piano-c-sharp.wav" type="audio/wav">
+    Your browser does not support the audio element.
+  </audio>
+
+  <audio id="D">
+    <source src="sounds/68442__pinkyfinger__piano-d.wav" type="audio/wav">
+    Your browser does not support the audio element.
+  </audio>
+
+  <audio id="Eb">
+    <source src="sounds/68444__pinkyfinger__piano-eb.wav" type="audio/wav">
+    Your browser does not support the audio element.
+  </audio>
+
+  <audio id="E">
+    <source src="sounds/68443__pinkyfinger__piano-e.wav" type="audio/wav">
+    Your browser does not support the audio element.
+  </audio>
+
+  <audio id="F">
+    <source src="sounds/68446__pinkyfinger__piano-f.wav" type="audio/wav">
+    Your browser does not support the audio element.
+  </audio>
+
+  <audio id="Fsharp">
+    <source src="sounds/68445__pinkyfinger__piano-f-sharp.wav" type="audio/wav">
+    Your browser does not support the audio element.
+  </audio>
+
+  <audio id="G">
+    <source src="sounds/68448__pinkyfinger__piano-g.wav" type="audio/wav">
+    Your browser does not support the audio element.
+  </audio>
+
+  <audio id="Gsharp">
+    <source src="sounds/68447__pinkyfinger__piano-g-sharp.wav" type="audio/wav">
+    Your browser does not support the audio element.
+  </audio>
+  <audio id="Gsharp5">
+    <source src="sounds/68447__pinkyfinger__piano-g-sharp5.wav" type="audio/wav">
+    Your browser does not support the audio element.
+  </audio>
+
+  <audio id="A5">
+    <source src="sounds/68437__pinkyfinger__piano-a5.wav" type="audio/wav">
+    Your browser does not support the audio element.
+  </audio>
+
+  <audio id="B5">
+    <source src="sounds/68438__pinkyfinger__piano-b5.wav" type="audio/wav">
+    Your browser does not support the audio element.
+  </audio>
+
+  <audio id="C5">
+    <source src="sounds/68441__pinkyfinger__piano-c5.wav" type="audio/wav">
+    Your browser does not support the audio element.
+  </audio>
+</body>
+
+</html>
